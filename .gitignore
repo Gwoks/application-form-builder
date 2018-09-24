@@ -1,0 +1,49 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# dependencies
+formbuilder-backend/target/*
+formbuilder-backend/bin/*
+angular-formbuilder-frontend/node_modules/*
+angular-formbuilder-frontend/dist/*
+angular-formbuilder-frontend/tmp/*
+angular-formbuilder-frontend/out-tsc/*
+angular-formbuilder-frontend/.sass-cache/*
+angular-formbuilder-frontend/connect.lock/*
+angular-formbuilder-frontend/coverage/*
+angular-formbuilder-frontend/libpeerconnection.log
+angular-formbuilder-frontend/npm-debug.log
+angular-formbuilder-frontend/yarn-error.log
+angular-formbuilder-frontend/testem.log
+angular-formbuilder-frontend/typings/*
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
