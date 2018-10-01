@@ -1,0 +1,19 @@
+<!--begin::Portlet-->
+<div *ngIf="tabs" class="m-portlet m-demo__preview">
+  <div class="m-portlet__body">
+    <ul class="nav nav-tabs  m-tabs-line" role="tablist">
+      <li *ngFor="let item of tabs.childs; let i = index" class="nav-item m-tabs__item">
+        <a class="nav-link m-tabs__link{{i == 0 ? ' active' : ''}}" data-toggle="tab" [attr.href]="'#' + item.id + randomGenerate" role="tab">
+          {{item.name}}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div *ngFor="let item of tabs.childs; let i = index" class="tab-pane{{i == 0 ? ' active' : ''}}" [attr.id]="item.id + randomGenerate"
+        role="tabpanel">
+        <app-recursive-template [application]="item.childs" [isResetForms]="isResetForms"></app-recursive-template>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end::Portlet-->

@@ -1,0 +1,24 @@
+<ng-container *ngFor="let item of inqr.childs">
+  <ng-container [ngSwitch]="item.type">
+
+    <app-form *ngSwitchCase="'form'" [form]="item"></app-form>
+
+    <app-inquiry-table *ngSwitchCase="'table'" [inqrtable]="item"></app-inquiry-table>
+
+    <ng-container *ngSwitchCase="'buttons'">
+      <div *ngIf="item" class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+        <div class="m-form__actions m-form__actions--solid">
+          <div class="row">
+            <div class="col-lg-12 m--align-right">
+              <button *ngFor="let button of item.childs" type="submit" (click)="submitButton(button.execution)" class="btn btn-primary btn-space">{{button.name}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <h4 *ngIf="enviromentProd">{{resultString}}</h4>
+    </ng-container>
+
+  </ng-container>
+</ng-container>

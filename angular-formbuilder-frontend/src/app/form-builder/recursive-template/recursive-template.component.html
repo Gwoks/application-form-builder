@@ -1,0 +1,35 @@
+<div *ngIf="application">
+    <ng-template #recursiveApplication let-application>
+        <div *ngFor="let item of application">
+            <div [ngSwitch]="item.type">
+                <app-recursive-template *ngSwitchCase="'application'" [application]="item.childs" [isResetForms]="isResetForms"></app-recursive-template>
+                <app-tabs *ngSwitchCase="'tabs'" [tabs]="item" [isResetForms]="isResetForms"></app-tabs>
+                <app-tab *ngSwitchCase="'tab'" [tab]="item" [isResetForms]="isResetForms"></app-tab>
+                <app-form *ngSwitchCase="'form'" [form]="item" [isResetForms]="isResetForms"></app-form>
+                <app-inquiry *ngSwitchCase="'inquiry'" [inqr]="item" [isResetForms]="isResetForms"></app-inquiry>
+                <app-form-header-detail *ngSwitchCase="'header-detail'" [form]="item" [isResetForms]="isResetForms"></app-form-header-detail>
+                <app-forms *ngSwitchCase="'forms'" [forms]="item" [isResetForms]="isResetForms"></app-forms>
+                <app-form-form-detail *ngSwitchCase="'form-detail'" [form]="item" ></app-form-form-detail>
+                <ng-container *ngSwitchCase="'buttons'">
+                    <ng-container *ngIf="getState(item.state)">
+                        <div *ngIf="item" class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-12 m--align-right">
+                                        <button *ngFor="let button of item.childs" type="submit" (click)="submitButton(button.execution, button.validate_first, button.page_action)"
+                                            class="btn btn-primary btn-space">{{button.name}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 *ngIf="enviromentProd">{{resultString}}</h4>
+                    </ng-container>
+                </ng-container>
+                <!-- <app-buttons *ngSwitchCase="'buttons'" [buttons]="item"></app-buttons> -->
+
+            </div>
+        </div>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="recursiveApplication; context:{ $implicit: application }"></ng-container>
+</div>

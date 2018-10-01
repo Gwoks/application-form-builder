@@ -1,0 +1,125 @@
+<div *ngIf="formGroup">
+  <div [formGroup]="formGroup" *ngIf="formDetail.visible">
+    <label class="col-form-label m--font-bolder" [attr.for]="formDetail.fieldName">{{formDetail.labelName}}
+      <span *ngIf="isMandatory && !isReadOnly" class="text-danger">*</span>
+    </label>
+
+    <div [ngSwitch]="formDetail.controlType" *ngIf="formDetail.visible">
+
+      <!-- If input type is textbox -->
+      <div *ngSwitchCase="'textbox'" [ngSwitch]="formDetail.inputType">
+
+        <input *ngSwitchCase="'text'" class="form-control m-input" [attr.id]="formDetail.guid" type="text" [formControlName]="formDetail.fieldName"
+          (change)="setGlobalVariable()" [attr.disabled]="isReadOnly ? true : null">
+
+        <input *ngSwitchCase="'number'" class="form-control m-input" [attr.id]="formDetail.guid" type="number" [formControlName]="formDetail.fieldName"
+          (change)="setGlobalVariable()" [attr.disabled]="isReadOnly ? true : null">
+
+        <div *ngSwitchCase="'date'">
+          <div class="input-group date" data-provide="datepicker">
+            <input type="text" class="form-control" [attr.id]="formDetail.guid" [formControlName]="formDetail.fieldName" (change)="setGlobalVariable()"
+              [attr.disabled]="isReadOnly ? true : null">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <div *ngSwitchCase="'money'">
+          <div class="input-group m-input-group">
+            <span class="input-group-addon">
+              Rp.
+            </span>
+            <input class="form-control m-input" [attr.id]="formDetail.guid" type="number" [formControlName]="formDetail.fieldName" [attr.disabled]="isReadOnly ? true : null"
+              style="text-align: right!important;" (change)="setGlobalVariable()">
+            <div class="money-unit">,00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- If input type is dropdown select -->
+      <select *ngSwitchCase="'dropdown'" class="form-control m-input" [attr.id]="formDetail.guid" [formControlName]="formDetail.fieldName"
+        [(ngModel)]="selectedObject" [attr.disabled]="isReadOnly ? true : null" (change)="setGlobalVariable()" (change)="setSelected($event)">
+        <option [ngValue]="null"></option>
+        <option *ngFor="let opt of lookUps" [ngValue]="opt.key">{{opt.value}}</option>
+      </select>
+
+      <script>
+        function myFunction(x) {
+          x.style.background = "yellow";
+        }
+      </script>
+
+      <!-- If input type is textarea -->
+      <textarea *ngSwitchCase="'textarea'" class="form-control m-input" [attr.id]="formDetail.guid" rows="4" cols="50" [formControlName]="formDetail.fieldName"
+        [attr.disabled]="isReadOnly ? true : null" (change)="setGlobalVariable()"></textarea>
+
+      <!-- If input type is radio button -->
+      <div *ngSwitchCase="'radio'" class="m-radio-inline">
+        <label class="m-radio" *ngFor="let opt of lookUps">
+          <input (keydown.enter)="$event.preventDefault()" type="radio" [name]="formDetail.fieldName" [value]="opt.key" [formControlName]="formDetail.fieldName"
+            [attr.disabled]="isReadOnly ? true : null" (change)="setGlobalVariable()">{{opt.value}}
+          <span></span>
+        </label>
+      </div>
+
+      <!-- If input type is checkbox -->
+      <div *ngSwitchCase="'checkbox'" class="m-checkbox-inline">
+        <label class="m-checkbox">
+          <input type="checkbox" [name]="formDetail.fieldName" [checked]="checkedBox" (change)="setChecked(checkedBox = !checkedBox)"
+            [formControlName]="formDetail.fieldName" [attr.disabled]="isReadOnly ? true : null" (change)="setGlobalVariable()"
+            checked>{{formDetail.inputType}}
+          <span></span>
+        </label>
+      </div>
+
+      <!-- input type fileupload -->
+      <div *ngSwitchCase="'fileupload'">
+        <input [type]="formDetail.inputType" accept={{formDetail.allowedType}} (change)="onFileChange($event)" #fileInput [attr.disabled]="isReadOnly ? true : null">
+        <input type="hidden" (change)="setGlobalVariable()" name="fileHidden" [formControlName]="formDetail.fieldName" [value]="[this.fileUploadValue]"
+        />
+        <button type="button" (click)="clearFile(this.formDetail.fieldName)">clear file</button>
+        <h6>Nama File: {{fileUploadName}}</h6>
+        <h6>Size File: {{fileUploadSize}} KB</h6>
+        <br>
+      </div>
+
+      <!-- input type lookup -->
+      <ng-container *ngSwitchCase="'lookup'">
+        <div class="m-input-icon m-input-icon--right">
+          <input [value]="formDetail.value" type="text" [attr.disabled]="true" class="form-control m-input" placeholder="{{lookupTypeValue}}">
+          <span class="m-input-icon__icon m-input-icon__icon--right">
+            <span>
+              <button type="button" (click)="onLookupClick()" class="btn btn-primary" data-toggle="modal" [attr.data-target]="'#' + formDetail.fieldName + randomGenerate">Search</button>
+            </span>
+          </span>
+        </div>
+        <!-- modal -->
+        <div class="modal fade" [attr.id]="formDetail.fieldName + randomGenerate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <div class="m-scrollable data-cursor" data-scrollbar-shown="true" data-scrollable="true">
+                  <app-table-detail (rowValue)="lookupTypeOnClick($event)"></app-table-detail>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <ul>
+      <li class="text-danger" *ngIf="isMaxLength">{{formDetail.labelName}} max length is {{formDetail.length}}</li>
+      <li class="text-danger" *ngIf="isEmail">{{formDetail.labelName}} format email</li>
+      <li class="text-danger" *ngIf="isFileSize">maximum file size is {{formDetail.allowedSize}}KB</li>
+      <li class="text-danger" *ngIf="isFileType">allowed type is {{formDetail.allowedType}}</li>
+    </ul>
+  </div>
+</div>

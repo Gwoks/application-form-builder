@@ -1,0 +1,17 @@
+<table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+  <thead>
+    <tr>
+      <ng-container *ngFor="let listHeader of tableHeader">
+        <th>{{listHeader}}</th>
+      </ng-container>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let formTableContent of tableContent">
+      <ng-container *ngFor="let content of formTableContent">
+        <th>{{content.value}}</th>
+      </ng-container>
+    </tr>
+  </tbody>
+</table>

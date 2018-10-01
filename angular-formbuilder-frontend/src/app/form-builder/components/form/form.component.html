@@ -1,0 +1,34 @@
+<!--begin::Form-->
+<form *ngIf="form" [formGroup]="formGroup" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+  <div class="m-portlet__body">
+    <div *ngIf="form.name" class="m-form__heading">
+      <h4 class="m-form__heading-title">
+        {{form.name}} :
+      </h4>
+    </div>
+
+    <div class="form-group m-form__group row">
+      <app-form-input *ngFor="let formDetail of formWrapper?.listFormDetail" [formReadOnly]="form.is_readonly" [formDetail]="formDetail"
+        [formGroup]="formGroup" [isResetForms]="isResetForms" class="col-lg-{{formDetail.columnLength}}"></app-form-input>
+    </div>
+
+  </div>
+
+  <!-- <div *ngIf="form.childs.length > 0" class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+
+  </div> -->
+
+  <!-- button -->
+  <div *ngIf="form.childs.length > 0" class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+    <ng-container *ngFor="let buttons of form.childs">
+      <div *ngIf="getState(buttons.state)" class="m-form__actions m-form__actions--solid m--align-right">
+        <button *ngFor="let button of buttons.childs" type="submit" (click)="submitButton(button.execution, button.validate_first, button.page_action)"
+          class="btn btn-primary btn-space">{{button.name}}</button>
+      </div>
+    </ng-container>
+  </div>
+</form>
+
+<h4 *ngIf="enviromentProd">{{resultString}}</h4>
+<div class="m-form__seperator m-form__seperator--dashed"></div>
+<!--end::Form-->

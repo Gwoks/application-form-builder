@@ -1,0 +1,21 @@
+<!--begin::Form-->
+<div *ngIf="form" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+
+  <div *ngFor="let formschild of listData" class="m-portlet__body">
+    <div class="m-form__actions m--align-right">
+      <button type="submit" (click)="deleteData(formschild)" class="btn btn-danger btn-space">Delete</button>
+    </div>
+
+    <!-- <app-recursive-template *ngFor="let forms of form.childs" [application]="forms.childs"></app-recursive-template> -->
+    <app-recursive-template [application]="formschild" [isResetForms]="isResetForms"></app-recursive-template>
+
+  </div>
+
+
+  <div class="m-form__actions m--align-right">
+    <button type="submit" (click)="addData()" class="btn btn-primary btn-space">Add</button>
+  </div>
+</div>
+
+<div class="m-form__seperator m-form__seperator--dashed"></div>
+<!--end::Form-->

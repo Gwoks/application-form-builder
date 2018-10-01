@@ -1,0 +1,44 @@
+<ng-container *ngIf="tableModel; else ERR_TEMPLATE">
+    <div class="col-lg-4">
+        <label>
+            Serarch:
+        </label>
+        <div class="m-input-icon m-input-icon--left">
+            <input type="text" class="form-control m-input" placeholder="Phone number">
+            <span class="m-input-icon__icon m-input-icon__icon--left">
+                <span>
+                    <i class="la la-search"></i>
+                </span>
+            </span>
+        </div>
+    </div>
+
+
+    <br>
+    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+        <thead>
+            <ng-container *ngFor="let formTableContent of tableModel; let first = first">
+                <tr *ngIf="first">
+                    <th scope="row">No.</th>
+                    <ng-container *ngFor="let content of formTableContent.listContent">
+                        <th scope="row">{{content.key}}</th>
+                    </ng-container>
+                </tr>
+            </ng-container>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let formTableContent of tableModel">
+                <tr (click)="onRowClick(formTableContent.listContent)" data-dismiss="modal">
+                    <th>{{formTableContent.rows}}</th>
+                    <ng-container *ngFor="let content of formTableContent.listContent">
+                        <th>{{content.value}}</th>
+                    </ng-container>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</ng-container>
+
+<ng-template #ERR_TEMPLATE>
+    <h1 style="text-align: center; padding-top: 40px;color: #d9534f">{{ERR_}}</h1>
+</ng-template>

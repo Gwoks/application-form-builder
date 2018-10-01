@@ -1,0 +1,75 @@
+<div class="m-portlet__body">
+  <!-- utk tabel -->
+  <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+    <thead>
+      <tr>
+        <th *ngFor="let listHeader of header">{{listHeader.labelName}}</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let resultData of list">
+        <td *ngFor="let content of resultData">{{content}}</td>
+        <td>
+          <a (click)="deleteItem(resultData)">
+            <i class="fa fa-trash-o" aria-hidden="true" style="cursor: pointer"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--begin::Form-->
+<form *ngIf="form" [formGroup]="formGroup" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
+
+  <div class="m-portlet__body">
+
+    <div *ngIf="form.name" class="m-form__heading">
+      <h4 class="m-form__heading-title">
+        {{form.name}} :
+      </h4>
+    </div>
+
+    <div class="form-group m-form__group row">
+      <app-form-input *ngFor="let formDetail of formWrapper?.listFormDetail" [formReadOnly]="form.is_readonly" [formDetail]="formDetail"
+        [formGroup]="formGroup" class="col-lg-6"></app-form-input>
+    </div>
+
+  </div>
+
+  <!-- table -->
+  <div class="m-portlet__body">
+    <!-- utk tabel -->
+    <table class="table table-bordered m-table m-table--border-brand m-table--head-bg-brand">
+      <thead>
+        <tr>
+          <th *ngFor="let listHeader of header">{{listHeader.labelName}}</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let resultData of list">
+          <td *ngFor="let content of resultData">{{content}}</td>
+          <td>
+            <a (click)="deleteItem(resultData)">
+              <i class="fa fa-trash-o" aria-hidden="true" style="cursor: pointer"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit"> -->
+  <div class="m-form__actions m--align-right">
+    <button type="submit" (click)="saveButton()" class="btn btn-primary btn-space">Save</button>
+  </div>
+  <!-- </div> -->
+</form>
+
+<div class="m-form__seperator m-form__seperator--dashed"></div>
+<!--end::Form-->
