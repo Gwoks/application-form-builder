@@ -1,20 +1,20 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { FormComponent } from '../form/form.component';
-import { InquiryTableComponent } from './inquiry-table/inquiry-table.component';
+import { SearchTableComponent } from './search-table/search-table.component';
 import { Application } from '../../../_model/application';
 import { KeyValueModel } from '../../../_model/key-value';
 import { environment } from '../../../../environments/environment';
 
 @Component({
-    selector: 'app-inquiry',
-    templateUrl: './inquiry.component.html'
+    selector: 'app-search',
+    templateUrl: './search.component.html'
 })
-export class InquiryComponent implements OnInit {
+export class SearchComponent implements OnInit {
     @Input() inqr: Application;
     @Input() isResetForms: boolean;
 
     @ViewChild(FormComponent) formComponent: FormComponent;
-    @ViewChild(InquiryTableComponent) inqrTableComponent: InquiryTableComponent;
+    @ViewChild(SearchTableComponent) inqrTableComponent: SearchTableComponent;
 
     temp = "{'onboard.usrprf.first_name':'asdasd','onboard.usrprf.last_name':'asdasd'}";
     resultString = '';

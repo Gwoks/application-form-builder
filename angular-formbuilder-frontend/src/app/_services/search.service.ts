@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable } from 'rxjs/Observable';
 // import { catchError } from 'rxjs/operators';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { InquiryDTO } from '../_model/inquiry-dto';
+import { SearchDTO } from '../_model/search-dto';
 import { environment } from '../../environments/environment';
 
 const httpOptions = {
@@ -13,19 +13,19 @@ const httpOptions = {
 };
 
 @Injectable()
-export class InquiryService {
+export class SearchService {
     private baseUrl = environment.apiUrl + '/inqr/';  // URL to web api
 
     constructor(private http: HttpClient) { }
 
-    getTableDetailById(idForm: string): Observable<InquiryDTO[]> {
-        return this.http.get<InquiryDTO[]>(this.baseUrl + idForm);
+    getTableDetailById(idForm: string): Observable<SearchDTO[]> {
+        return this.http.get<SearchDTO[]>(this.baseUrl + idForm);
 
         // .pipe(catchError(this.handleError));
     }
 
-    searchTableContainer(idForm: string, containers: string): Observable<InquiryDTO[]> {
-        return this.http.post<InquiryDTO[]>(
+    searchTableContainer(idForm: string, containers: string): Observable<SearchDTO[]> {
+        return this.http.post<SearchDTO[]>(
             this.baseUrl + idForm, containers, httpOptions
         );
         // .pipe(catchError(this.handleError)

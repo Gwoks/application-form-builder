@@ -1,19 +1,19 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Application } from '../../../../_model/application';
-import { InquiryDTO } from '../../../../_model/inquiry-dto';
-import { InquiryService } from '../../../../_services/inquiry.service';
+import { SearchDTO } from '../../../../_model/search-dto';
+import { SearchService } from '../../../../_services/search.service';
 
 @Component({
-    selector: 'app-inquiry-table',
-    templateUrl: './inquiry-table.component.html'
+    selector: 'app-search-table',
+    templateUrl: './search-table.component.html'
 })
-export class InquiryTableComponent implements OnInit {
+export class SearchTableComponent implements OnInit {
     @Input() inqrtable: Application;
     tableHeader: string[];
-    tableContent: InquiryDTO[];
+    tableContent: SearchDTO[];
 
     constructor(
-        private inqrService: InquiryService
+        private inqrService: SearchService
     ) { }
 
     ngOnInit() {

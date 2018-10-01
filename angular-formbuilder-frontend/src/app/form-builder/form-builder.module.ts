@@ -13,8 +13,8 @@ import { RecursiveTemplateComponent } from './recursive-template/recursive-templ
 import { TabComponent } from './components/tab/tab.component';
 import { TabsComponent } from './components/tabs/tabs.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
-import { InquiryComponent } from './components/inquiry/inquiry.component';
-import { InquiryTableComponent } from './components/inquiry/inquiry-table/inquiry-table.component';
+import { SearchComponent } from './components/search/search.component';
+import { SearchTableComponent } from './components/search/search-table/search-table.component';
 import { TableDetailComponent } from './components/table-detail/table-detail.component';
 import { FormHeaderDetailComponent } from './components/form-header-detail/form-header-detail.component';
 import { FormDetailComponent } from './components/form-detail/form-detail.component';
@@ -23,7 +23,7 @@ import { FormsComponent } from './components/forms/forms.component';
 // service
 import { ApplicationService } from '../_services/application.service';
 import { ExecutionService } from '../_services/execution.service';
-import { InquiryService } from '../_services/inquiry.service';
+import { SearchService } from '../_services/search.service';
 import { DynamicTableDetailService } from '../_services/dynamic-table-detail.service';
 import { InputControlService } from '../_services/input-control.service';
 import { LookUpService } from '../_services/lookup.service';
@@ -56,8 +56,8 @@ const routes: Routes = [
         TabComponent,
         TabsComponent,
         FormInputComponent,
-        InquiryComponent,
-        InquiryTableComponent,
+        SearchComponent,
+        SearchTableComponent,
         TableDetailComponent,
         FormHeaderDetailComponent,
         FormDetailComponent,
@@ -65,7 +65,7 @@ const routes: Routes = [
     ], providers: [
         ApplicationService,
         ExecutionService,
-        InquiryService,
+        SearchService,
         DynamicTableDetailService,
         InputControlService,
         LookUpService,

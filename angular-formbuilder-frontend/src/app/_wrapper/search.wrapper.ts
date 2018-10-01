@@ -1,6 +1,6 @@
 import { FormWrapper } from '../_wrapper/form.wrapper';
 
-export class InquiryWrapper {
+export class SearchWrapper {
     formWrapper: FormWrapper;
     tableHeader: string[];
 }

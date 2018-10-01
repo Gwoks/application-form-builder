@@ -3,7 +3,7 @@
 
     <app-form *ngSwitchCase="'form'" [form]="item"></app-form>
 
-    <app-inquiry-table *ngSwitchCase="'table'" [inqrtable]="item"></app-inquiry-table>
+    <app-search-table *ngSwitchCase="'table'" [inqrtable]="item"></app-search-table>
 
     <ng-container *ngSwitchCase="'buttons'">
       <div *ngIf="item" class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
