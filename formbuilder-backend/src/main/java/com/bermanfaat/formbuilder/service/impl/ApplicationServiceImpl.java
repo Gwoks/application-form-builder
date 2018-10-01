@@ -13,11 +13,11 @@ import com.bermanfaat.formbuilder.dao.DataDao;
 import com.bermanfaat.formbuilder.dao.FormDetailDao;
 import com.bermanfaat.formbuilder.dao.FormHeaderDao;
 import com.bermanfaat.formbuilder.dao.FormVersionDao;
-import com.bermanfaat.formbuilder.dao.InquiryDao;
+import com.bermanfaat.formbuilder.dao.SearchDao;
 import com.bermanfaat.formbuilder.model.FormDetail;
 import com.bermanfaat.formbuilder.model.FormHeader;
 import com.bermanfaat.formbuilder.model.FormVersion;
-import com.bermanfaat.formbuilder.model.Inquiry;
+import com.bermanfaat.formbuilder.model.Search;
 import com.bermanfaat.formbuilder.model.KeyValue;
 import com.bermanfaat.formbuilder.service.ApplicationService;
 import com.bermanfaat.formbuilder.util.CommonUtils;
@@ -76,7 +76,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 	private DataDao dataDao;
 
 	@Autowired
-	private InquiryDao inquiryDao;
+	private SearchDao searchDao;
 
 	@Override
 	public JSONObject getApplicationFromXML(String applicationID, String idRow) throws JSONException {
@@ -196,7 +196,7 @@ public class ApplicationServiceImpl implements ApplicationService {
 			}
 
 		} else if (type.equals("table")) {
-			List<String> result = generateListForTable(inquiryDao.getInquiryById(id));
+			List<String> result = generateListForTable(searchDao.getSearchById(id));
 
 			String mapperTable = mapper.writeValueAsString(result);
 			jsonObj.put(ATTRIBUTE_TABLE_HEADER, mapperTable);
@@ -299,12 +299,12 @@ public class ApplicationServiceImpl implements ApplicationService {
 		// return formWrapper;
 	}
 
-	private List<String> generateListForTable(List<Inquiry> inquiryById) {
+	private List<String> generateListForTable(List<Search> searchById) {
 		List<String> result = new ArrayList<String>();
 
-		inquiryById.sort((o1, o2) -> o1.getOrderNo().compareTo(o2.getOrderNo()));
-		for (Inquiry inquiry : inquiryById) {
-			result.add(inquiry.getLabel());
+		searchById.sort((o1, o2) -> o1.getOrderNo().compareTo(o2.getOrderNo()));
+		for (Search search : searchById) {
+			result.add(search.getLabel());
 		}
 
 		return result;

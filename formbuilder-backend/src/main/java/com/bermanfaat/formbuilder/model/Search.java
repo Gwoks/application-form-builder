@@ -1,24 +1,24 @@
 package com.bermanfaat.formbuilder.model;
 
-public class Inquiry {
+public class Search {
 	private String id;
-	private String inquiryId;
+	private String searchId;
 	private String label;
 	private String sourceField;
 	private String type;
 	private Integer orderNo;
 
-	public Inquiry(String id, String inquiryId, String label, String sourceField, String type, Integer orderNo) {
+	public Search(String id, String searchId, String label, String sourceField, String type, Integer orderNo) {
 		super();
 		this.id = id;
-		this.inquiryId = inquiryId;
+		this.searchId = searchId;
 		this.label = label;
 		this.sourceField = sourceField;
 		this.type = type;
 		this.orderNo = orderNo;
 	}
 
-	public Inquiry() {
+	public Search() {
 		super();
 	}
 
@@ -30,12 +30,12 @@ public class Inquiry {
 		this.id = id;
 	}
 
-	public String getInquiryId() {
-		return inquiryId;
+	public String getSearchId() {
+		return searchId;
 	}
 
-	public void setInquiryId(String inquiryId) {
-		this.inquiryId = inquiryId;
+	public void setSearchId(String searchId) {
+		this.searchId = searchId;
 	}
 
 	public String getLabel() {
@@ -72,9 +72,9 @@ public class Inquiry {
 
 	@Override
 	public String toString() {
-		return "Inquiry [id=" + id + ", inquiryId=" + inquiryId + ", label=" + label + ", sourceField=" + sourceField
-				+ ", type=" + type + ", orderNo=" + orderNo + ", getId()=" + getId() + ", getInquiryId()="
-				+ getInquiryId() + ", getLabel()=" + getLabel() + ", getSourceField()=" + getSourceField()
+		return "Search [id=" + id + ", searchId=" + searchId + ", label=" + label + ", sourceField=" + sourceField
+				+ ", type=" + type + ", orderNo=" + orderNo + ", getId()=" + getId() + ", getSearchId()="
+				+ getSearchId() + ", getLabel()=" + getLabel() + ", getSourceField()=" + getSourceField()
 				+ ", getType()=" + getType() + ", getOrderNo()=" + getOrderNo() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}

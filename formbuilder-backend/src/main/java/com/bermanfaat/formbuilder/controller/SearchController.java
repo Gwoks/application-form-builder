@@ -10,29 +10,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bermanfaat.formbuilder.dto.InquiryDTO;
-import com.bermanfaat.formbuilder.service.InquiryService;
+import com.bermanfaat.formbuilder.dto.SearchDTO;
+import com.bermanfaat.formbuilder.service.SearchService;
 
 @RestController
 //@CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("inqr")
-public class InquiryController {
+@RequestMapping("srch")
+public class SearchController {
 	@Autowired
-	private InquiryService inquiryService;
+	private SearchService searchService;
 
-	@GetMapping("/{idInqr}")
-	public List<List<InquiryDTO>> getInquiryById(@PathVariable("idInqr") String idInqr) {
+	@GetMapping("/{idSrch}")
+	public List<List<SearchDTO>> getSearchById(@PathVariable("idSrch") String idSrch) {
 		try {
-			return inquiryService.getInquiryList(idInqr);
+			return searchService.getSearchList(idSrch);
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	@PostMapping("/{idInqr}")
-	public List<List<InquiryDTO>> getInquiryByJoin(@PathVariable("idInqr") String idInqr, @RequestBody String data) {
+	@PostMapping("/{idSrch}")
+	public List<List<SearchDTO>> getSearchByJoin(@PathVariable("idSrch") String idSrch, @RequestBody String data) {
 		try {
-			List<List<InquiryDTO>> res = inquiryService.getInquiryJoin(idInqr, data);
+			List<List<SearchDTO>> res = searchService.getSearchJoin(idSrch, data);
 			return res;
 		} catch (Exception e) {
 			return null;

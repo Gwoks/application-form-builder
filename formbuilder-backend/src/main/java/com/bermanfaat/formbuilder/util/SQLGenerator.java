@@ -109,19 +109,19 @@ public class SQLGenerator {
 		return sql.toString();
 	}
 
-	public static String inquiryJoinSql(List<String> inquiryFieldName) {
-		String selectColumn = getSelectedColumn(inquiryFieldName);
+	public static String searchJoinSql(List<String> searchFieldName) {
+		String selectColumn = getSelectedColumn(searchFieldName);
 
-		List<String> tableList = getInquiryTableList(inquiryFieldName);
+		List<String> tableList = getSearchTableList(searchFieldName);
 
-		String innerJoin = getInquiryInnerJoin(tableList);
+		String innerJoin = getSearchInnerJoin(tableList);
 
 		String res = "SELECT " + selectColumn + " FROM " + tableList.get(0) + " " + innerJoin;
 		// System.out.println(res);
 		return res;
 	}
 
-	public static String inquiryJoinSqlSearch(String sqlJoin, Map<String, String> additionString) {
+	public static String searchJoinSqlSearch(String sqlJoin, Map<String, String> additionString) {
 		String additionalWhere = generateWhere(additionString);
 		String res = sqlJoin + additionalWhere;
 		System.out.println(res);
@@ -151,32 +151,32 @@ public class SQLGenerator {
 
 	}
 
-	private static String getSelectedColumn(List<String> inquiryFieldName) {
+	private static String getSelectedColumn(List<String> searchFieldName) {
 		String res = "";
-		for (int i = 0; i < inquiryFieldName.size(); i++) {
-			if (i != inquiryFieldName.size() - 1) {
-				res = res + inquiryFieldName.get(i) + ",";
+		for (int i = 0; i < searchFieldName.size(); i++) {
+			if (i != searchFieldName.size() - 1) {
+				res = res + searchFieldName.get(i) + ",";
 			} else {
-				res = res + inquiryFieldName.get(i);
+				res = res + searchFieldName.get(i);
 			}
 		}
 		return res;
 	}
 
-	private static List<String> getInquiryTableList(List<String> inquiryFieldName) {
+	private static List<String> getSearchTableList(List<String> searchFieldName) {
 		List<String> res = new ArrayList<>();
 
 		Set<String> set = new LinkedHashSet<>();
 
-		for (String inq : inquiryFieldName) {
-			set.add(inq.substring(0, inq.lastIndexOf(".")));
+		for (String srch : searchFieldName) {
+			set.add(srch.substring(0, srch.lastIndexOf(".")));
 		}
 
 		res.addAll(set);
 		return res;
 	}
 
-	private static String getInquiryInnerJoin(List<String> tableList) {
+	private static String getSearchInnerJoin(List<String> tableList) {
 		String res = "";
 		// dimulai dari 1 bukan nol
 		for (int i = 1; i < tableList.size(); i++) {

@@ -1,17 +1,17 @@
 package com.bermanfaat.formbuilder.dto;
 
-public class InquiryDTO {
+public class SearchDTO {
 	private String label;
 	private String type;
 	private String value;
 
-	public InquiryDTO(String label, String type, String value) {
+	public SearchDTO(String label, String type, String value) {
 		this.label = label;
 		this.type = type;
 		this.value = value;
 	}
 
-	public InquiryDTO() {
+	public SearchDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,7 +42,7 @@ public class InquiryDTO {
 
 	@Override
 	public String toString() {
-		return "InquiryDTO [label=" + label + ", type=" + type + ", value=" + value + ", getLabel()=" + getLabel()
+		return "SearchDTO [label=" + label + ", type=" + type + ", value=" + value + ", getLabel()=" + getLabel()
 				+ ", getType()=" + getType() + ", getValue()=" + getValue() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}

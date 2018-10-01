@@ -56,38 +56,4 @@ public class KeyValueUtil {
 		}
 		return result;
 	}
-
-	// List<List<InquiryDTO>> generateInquiryDTO(List inquiryValue, List<Inquiry>
-	// inquiryList) {
-	// List<List<InquiryDTO>> result = new ArrayList<>();
-	// inquiryList.sort((o1, o2) -> o1.getOrderNo().compareTo(o2.getOrderNo()));
-	//
-	// for (Object inqValue : inquiryValue) {
-	// Map map = (Map) inqValue;
-	// List<InquiryDTO> subRes = new ArrayList<>();
-	//
-	// for (Inquiry inq : inquiryList) {
-	// InquiryDTO inqDTO = new InquiryDTO();
-	// inqDTO.setType(inq.getType());
-	// inqDTO.setLabel(inq.getLabel());
-	//
-	// for (Object key : map.keySet()) {
-	// String[] temp1 = inq.getSourceField().split("\\.");
-	// String temp = temp1[temp1.length - 1];
-	// if (key.toString().equals(temp) && map.get(key) != null) {
-	// inqDTO.setValue(map.get(key).toString());
-	// }
-	// if (!inqDTO.getType().equals("string")) {
-	// inqDTO.setValue(inq.getSourceField());
-	// }
-	// }
-	//
-	// subRes.add(inqDTO);
-	// }
-	//
-	// result.add(subRes);
-	// }
-	//
-	// return result;
-	// }
 }
